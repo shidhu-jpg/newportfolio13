@@ -174,7 +174,7 @@ export default function Hero({ isDark }) {
                 <img
                   src={heroImg}
                   alt="Shidhu — Developer & Designer"
-                  className="w-64 sm:w-80 lg:w-[420px] object-cover rounded-3xl"
+                  className="w-80 sm:w-[380px] lg:w-[420px] object-cover rounded-3xl"
                 />
                 {/* Subtle gradient overlay at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-accent/15 via-transparent to-transparent rounded-3xl" />
