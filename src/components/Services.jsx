@@ -371,6 +371,48 @@ const SERVICES = [
       },
     ],
   },
+  {
+    num: '10', name: 'INSTAGRAM MANAGEMENT', icon: '📸',
+    grad: 'from-fuchsia-500 to-pink-500', badge: null,
+    desc: 'We manage your Instagram so you can focus on running your business. You provide the photos/videos — we handle everything else.',
+    note: 'Client provides photos/videos. Ad budget is managed separately and not included in monthly pricing.',
+    plans: [
+      {
+        name: 'Basic', price: '₹1,499', monthly: true, delivery: 'Just ₹50/day', highlight: false,
+        features: [
+          '8 posts/month',
+          '4 stories/month',
+          'Captions & hashtags written for you',
+          'Scheduled uploading',
+          'Ad budget managed separately',
+        ],
+      },
+      {
+        name: 'Standard', price: '₹2,999', monthly: true, delivery: 'Best value — 2× the work', highlight: true, highlightLabel: 'Most Popular',
+        features: [
+          '15 posts/month',
+          '10 stories/month',
+          'Captions & hashtags written for you',
+          'Scheduled uploading',
+          'Comment replies (weekdays)',
+          'Ad budget managed separately',
+        ],
+      },
+      {
+        name: 'Pro', price: '₹4,999', originalPrice: '₹5,999', savingsBadge: 'Save ₹1,000', monthly: true, delivery: 'Full management, zero stress', highlight: false,
+        features: [
+          '20 posts/month',
+          'Unlimited stories',
+          'Captions & hashtags written for you',
+          'Scheduled uploading',
+          'DM + comment management (daily)',
+          'Monthly performance report',
+          'Monthly strategy call',
+          'Ad budget managed separately',
+        ],
+      },
+    ],
+  },
 ]
 
 function ServiceIcon({ icon, grad, index }) {
@@ -431,7 +473,7 @@ function PlanCard({ plan, serviceName }) {
     >
       {plan.highlight && (
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 font-body text-[10px] font-semibold tracking-widest uppercase bg-accent text-white px-3 py-1 rounded-full shadow-lg shadow-accent/30">
-          Recommended
+          {plan.highlightLabel ?? 'Recommended'}
         </span>
       )}
 
@@ -440,12 +482,20 @@ function PlanCard({ plan, serviceName }) {
         <p className={`font-body text-xs font-semibold tracking-widest uppercase mb-2 ${plan.highlight ? 'text-accent' : 'text-gray-500'}`}>
           {plan.name}
         </p>
-        <div className="flex items-end gap-1">
+        <div className="flex items-end gap-2 flex-wrap">
           <span className="font-display text-white" style={{ fontSize: 'clamp(26px, 3.5vw, 36px)' }}>
             {plan.price}
           </span>
+          {plan.originalPrice && (
+            <span className="font-body text-gray-600 text-sm line-through mb-1">{plan.originalPrice}</span>
+          )}
           {plan.monthly && (
             <span className="font-body text-gray-500 text-sm mb-1">/mo</span>
+          )}
+          {plan.savingsBadge && (
+            <span className="font-body text-[10px] font-semibold tracking-wider uppercase bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 mb-1">
+              {plan.savingsBadge}
+            </span>
           )}
         </div>
         <p className="font-body text-gray-600 text-[11px] mt-1 flex items-center gap-1.5">
@@ -583,9 +633,15 @@ export default function Services() {
                             <PlanCard key={plan.name} plan={plan} serviceName={s.name} />
                           ))}
                         </div>
-                        <p className="font-body text-gray-700 text-xs mt-5">
-                          * All prices are starting rates. Final quote depends on project scope. <a href="#contact" className="text-accent hover:underline">Contact for custom requirements →</a>
-                        </p>
+                        {s.note ? (
+                          <p className="font-body text-gray-700 text-xs mt-5">
+                            * {s.note} <a href="#contact" className="text-accent hover:underline">Contact for custom requirements →</a>
+                          </p>
+                        ) : (
+                          <p className="font-body text-gray-700 text-xs mt-5">
+                            * All prices are starting rates. Final quote depends on project scope. <a href="#contact" className="text-accent hover:underline">Contact for custom requirements →</a>
+                          </p>
+                        )}
                       </div>
                     </motion.div>
                   )}
