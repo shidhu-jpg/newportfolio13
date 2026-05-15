@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const LINKS = [
   { label: 'ABOUT', href: '#about' },
   { label: 'SERVICES', href: '#services' },
@@ -86,9 +88,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="font-body text-gray-700 text-xs mt-10 text-center">
-          © {new Date().getFullYear()} Shidhu. All rights reserved.
-        </p>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <p className="font-body text-gray-700 text-xs">
+            © {new Date().getFullYear()} Shidhu. All rights reserved.
+          </p>
+          <span className="hidden sm:block text-gray-700 text-xs">·</span>
+          <Link
+            to="/privacy-policy"
+            className="font-body text-xs text-gray-600 hover:text-accent transition-colors duration-200"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   )
