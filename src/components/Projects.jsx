@@ -31,6 +31,14 @@ const PROJECTS = [
     image: '/images/zenithtail.png',
     live: 'http://zenithtail.in/',
   },
+  {
+    num: '05',
+    name: 'ARORA SWEETS',
+    category: 'Food & Sweets Web',
+    desc: 'Elegant website for a traditional sweet shop to showcase their products and attract local customers.',
+    image: '/images/arorasweets.png',
+    live: 'https://arorasweets.co.in/',
+  },
 ]
 
 function ProjectRow({ project, isDark }) {
