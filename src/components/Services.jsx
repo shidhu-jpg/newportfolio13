@@ -458,7 +458,7 @@ function PlanCard({ plan, serviceName }) {
   const waMsg = encodeURIComponent(
     `Hi Shidhu! I'm interested in your ${serviceName} service – ${plan.name} plan (${plan.price}${plan.monthly ? '/mo' : ''}). Can we connect?`
   )
-  const waUrl = `https://wa.me/91934184664?text=${waMsg}`
+  const waUrl = `https://wa.me/919341784664?text=${waMsg}`
 
   return (
     <motion.div

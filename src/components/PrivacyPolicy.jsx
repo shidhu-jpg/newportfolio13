@@ -31,7 +31,7 @@ const SECTIONS = [
   },
   {
     title: '8. Contact',
-    body: `If you have any questions about this Privacy Policy, please reach out via WhatsApp at +91 934184664.`,
+    body: `If you have any questions about this Privacy Policy, please reach out via WhatsApp at +91 9341784664.`,
   },
 ]
 
