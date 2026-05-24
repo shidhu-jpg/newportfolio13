@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Reviews from './components/Reviews'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
+import LeadPopup from './components/LeadPopup'
 
 function Home({ isDark, onToggle }) {
   return (
@@ -19,6 +20,7 @@ function Home({ isDark, onToggle }) {
       <Projects isDark={isDark} />
       <Reviews isDark={isDark} />
       <Footer />
+      <LeadPopup />
     </div>
   )
 }
