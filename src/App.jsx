@@ -4,11 +4,14 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Services from './components/Services'
+import Process from './components/Process'
 import Projects from './components/Projects'
 import Reviews from './components/Reviews'
+import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import LeadPopup from './components/LeadPopup'
+import WhatsAppFloat from './components/WhatsAppFloat'
 
 function Home({ isDark, onToggle }) {
   return (
@@ -17,10 +20,13 @@ function Home({ isDark, onToggle }) {
       <Hero isDark={isDark} />
       <About />
       <Services />
+      <Process />
       <Projects isDark={isDark} />
       <Reviews isDark={isDark} />
+      <FAQ />
       <Footer />
       <LeadPopup />
+      <WhatsAppFloat />
     </div>
   )
 }

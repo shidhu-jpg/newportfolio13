@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 const LINKS = [
   { label: 'ABOUT', href: '#about' },
   { label: 'SERVICES', href: '#services' },
+  { label: 'PROCESS', href: '#process' },
   { label: 'PROJECTS', href: '#projects' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'REVIEWS', href: '#reviews' },
 ]
 
