@@ -11,6 +11,7 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import LeadPopup from './components/LeadPopup'
+import SpinWheelPopup from './components/SpinWheelPopup'
 import WhatsAppFloat from './components/WhatsAppFloat'
 
 function Home({ isDark, onToggle }) {
@@ -25,6 +26,7 @@ function Home({ isDark, onToggle }) {
       <Reviews isDark={isDark} />
       <FAQ />
       <Footer />
+      <SpinWheelPopup />
       <LeadPopup />
       <WhatsAppFloat />
     </div>
