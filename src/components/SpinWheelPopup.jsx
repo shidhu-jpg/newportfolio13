@@ -1,12 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import emailjs from '@emailjs/browser'
 
-const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
-const STORAGE_KEY = 'shidhu_spin_wheel'
+const WHATSAPP_NUMBER = '919341784664'
+const STORAGE_KEY     = 'shidhu_spin_wheel'
 const SHOW_DELAY  = 3000 // 3 seconds after page load
 
 // 6 segments: two each of 5%, 10%, 15%
@@ -123,7 +119,6 @@ export default function SpinWheelPopup() {
   const [name,     setName]     = useState('')
   const [phone,    setPhone]    = useState('')
   const [business, setBusiness] = useState('')
-  const [status,   setStatus]   = useState('idle') // idle | sending | error
 
   const wheelRef = useRef(null)
   const rotRef   = useRef(0)   // tracks actual CSS rotation accumulated
@@ -184,31 +179,22 @@ export default function SpinWheelPopup() {
     }, 4800)
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
     if (!name.trim() || !phone.trim() || !business.trim()) return
 
     const wonDiscount = SEGMENTS[wonIdx]?.discount ?? '?'
-    setStatus('sending')
+    const msg = encodeURIComponent(
+      `Hi Shidhu! I just won a ${wonDiscount}% discount on your website 🎉\n\n` +
+      `Name: ${name.trim()}\n` +
+      `Phone: ${phone.trim()}\n` +
+      `Business: ${business.trim()}\n\n` +
+      `Please apply my discount!`
+    )
 
-    try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name:        name.trim(),
-          phone:            phone.trim(),
-          service_interest: `${business.trim()} — Spin Wheel Discount: ${wonDiscount}% OFF`,
-          page_url:         window.location.href,
-          submitted_at:     new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        },
-        PUBLIC_KEY,
-      )
-      localStorage.setItem(STORAGE_KEY, 'submitted')
-      setPhase('done')
-    } catch {
-      setStatus('error')
-    }
+    localStorage.setItem(STORAGE_KEY, 'submitted')
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank')
+    setPhase('done')
   }
 
   const wonDiscount = wonIdx !== null ? SEGMENTS[wonIdx].discount : null
@@ -355,30 +341,13 @@ export default function SpinWheelPopup() {
                       className="w-full bg-white/5 border border-white/10 focus:border-accent/60 outline-none rounded-xl px-4 py-2.5 font-body text-sm text-white placeholder-gray-600 transition-colors"
                     />
 
-                    {status === 'error' && (
-                      <p className="font-body text-red-400 text-xs">
-                        Something went wrong. WhatsApp us at +91 9341784664.
-                      </p>
-                    )}
-
                     <motion.button
                       type="submit"
-                      disabled={status === 'sending'}
-                      className="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent-light text-white font-body font-bold text-sm transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-accent to-accent-light text-white font-body font-bold text-sm flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {status === 'sending' ? (
-                        <>
-                          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                          </svg>
-                          Sending…
-                        </>
-                      ) : (
-                        'Send & Claim Discount →'
-                      )}
+                      Send on WhatsApp →
                     </motion.button>
 
                     <p className="font-body text-gray-700 text-[10px] text-center">
